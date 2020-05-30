@@ -57,19 +57,52 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-volatile int USART1TransferCompleted;
-
-void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
-{
-    USART1TransferCompleted = 1; // this functions should check the instance as well
-}
 void flash()
 {
 	while(1){
 		HAL_GPIO_WritePin(osc_scope_GPIO_Port, osc_scope_Pin, GPIO_PIN_SET);
-		HAL_Delay(500);
+		HAL_Delay(5);
 		HAL_GPIO_WritePin(osc_scope_GPIO_Port, osc_scope_Pin, GPIO_PIN_RESET);
-		HAL_Delay(500);
+		HAL_Delay(5);
+	}
+}
+void nops()
+{
+	while(1){
+		HAL_GPIO_WritePin(osc_scope_GPIO_Port, osc_scope_Pin, GPIO_PIN_SET);
+		__NOP();
+		__NOP();
+		__NOP();
+		__NOP();
+		__NOP();
+		__NOP();
+		__NOP();
+
+		__NOP();
+				__NOP();
+				__NOP();
+				__NOP();
+				__NOP();
+				__NOP();
+				__NOP();
+		HAL_GPIO_WritePin(osc_scope_GPIO_Port, osc_scope_Pin, GPIO_PIN_RESET);
+		__NOP();
+		__NOP();
+		__NOP();
+		__NOP();
+		__NOP();
+		__NOP();
+		__NOP();
+
+		__NOP();
+				__NOP();
+				__NOP();
+				__NOP();
+				__NOP();
+				__NOP();
+				__NOP();
+
+
 	}
 }
 /* USER CODE END 0 */
@@ -113,7 +146,7 @@ int main(void)
   {
 	Error_Handler();
   }
-  flash();
+  nops();
 
   /* USER CODE END 2 */
 
@@ -122,15 +155,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-   USART1TransferCompleted = 0;
-   HAL_UART_Transmit_IT(&huart1,(uint8_t*)"OK\r\n ",5);
-   while(!USART1TransferCompleted);
-   flash();
 
-   USART1TransferCompleted = 0;
-   HAL_UART_Transmit_IT(&huart1,(uint8_t*)buff,5);
-   while(!USART1TransferCompleted);
-   HAL_Delay(500);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

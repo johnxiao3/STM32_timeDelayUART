@@ -40,8 +40,8 @@ STM32_timeDelayUART.bin \
 all: STM32_timeDelayUART.elf secondary-outputs
 
 # Tool invocations
-STM32_timeDelayUART.elf: $(OBJS) $(USER_OBJS) C:\Users\jinyu\OneDrive\Documents\STM32\STM32_timeDelayUART\STM32F103C6TX_FLASH.ld
-	arm-none-eabi-gcc -o "STM32_timeDelayUART.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\jinyu\OneDrive\Documents\STM32\STM32_timeDelayUART\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_timeDelayUART.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32_timeDelayUART.elf: $(OBJS) $(USER_OBJS) D:\UWB\STM32_timeDelayUART\STM32F103C6TX_FLASH.ld
+	arm-none-eabi-gcc -o "STM32_timeDelayUART.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\UWB\STM32_timeDelayUART\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_timeDelayUART.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
